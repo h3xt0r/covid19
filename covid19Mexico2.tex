@@ -1,0 +1,1241 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+    \usepackage{iftex}
+    \ifPDFTeX
+    	\usepackage[T1]{fontenc}
+    	\usepackage{mathpazo}
+    \else
+    	\usepackage{fontspec}
+    \fi
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range
+    \makeatletter % fix for grffile with XeLaTeX
+    \def\Gread@@xetex#1{%
+      \IfFileExists{"\Gin@base".bb}%
+      {\Gread@eps{\Gin@base.bb}}%
+      {\Gread@@xetex@aux#1}%
+    }
+    \makeatother
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{covid19Mexico2}
+    \author{Héctor Hernández Caso}
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        \ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \#Analisis de COVID19 en México
+
+Vamos a hacer un analisis de los datos de COVID19 en la Ciudad de México
+para ver cual ha sido el incremento en el número de casos por dia
+
+El objetivo es ver si las medidas de contención estan funcionando, pues
+los porcentajes sobre numeros cada vez mayoers no son indicadores claros
+del crecimiento de la enfermedad.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{selenium} \PY{k+kn}{import} \PY{n}{webdriver}
+\PY{k+kn}{from} \PY{n+nn}{bs4} \PY{k+kn}{import} \PY{n}{BeautifulSoup} \PY{k}{as} \PY{n}{bs}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{k+kn}{import} \PY{n+nn}{datetime}
+\PY{c+c1}{\PYZsh{}importamos el driver para google chrome 83.04.***}
+\PY{c+c1}{\PYZsh{}/home/kritt/VirtualPython3.8}
+\PY{n}{driver} \PY{o}{=} \PY{n}{webdriver}\PY{o}{.}\PY{n}{Chrome}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/home/kritt/VirtualPython3.8/chromedriver}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}URL de donde vamos a bajar las cosas}
+\PY{n}{driver}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://en.wikipedia.org/wiki/Timeline\PYZus{}of\PYZus{}the\PYZus{}COVID\PYZhy{}19\PYZus{}pandemic\PYZus{}in\PYZus{}Mexico}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}driver.get(\PYZdq{}https://en.wikipedia.org/wiki/COVID\PYZhy{}19\PYZus{}pandemic\PYZus{}in\PYZus{}Mexico\PYZdq{})}
+\PY{c+c1}{\PYZsh{}Luego creamos un par de listas vacias para guardar los datos}
+\PY{n}{enfermos} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{muertos} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{c+c1}{\PYZsh{}obtenemos el contenido}
+\PY{n}{contenido} \PY{o}{=} \PY{n}{driver}\PY{o}{.}\PY{n}{page\PYZus{}source} \PY{c+c1}{\PYZsh{}esta es la pagina}
+\PY{c+c1}{\PYZsh{} y lo pasamos al BeautifulSoup}
+\PY{n}{soup} \PY{o}{=} \PY{n}{bs}\PY{p}{(}\PY{n}{contenido}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{html.parser}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}esta es toda la sopa en html}
+\PY{n}{datos}\PY{o}{=}\PY{n}{soup}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{span}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{class\PYZus{}}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cbs\PYZhy{}ibr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}inspecionamos (inspect from chrome) para saber el elemento que queremos}
+\PY{n}{fechas}\PY{o}{=}\PY{n}{soup}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{td}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{class\PYZus{}}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bb\PYZhy{}04em}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Numero de datos recuperados }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{datos}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, enfermos + muertos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}numero de datos en la lista, enfermos y muertos}
+\PY{c+c1}{\PYZsh{}como la informacion viene revuelta, los pares son enfermos y los nones son muertos}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{datos}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{i}\PY{o}{\PYZpc{}}\PY{k}{2}==0:
+        \PY{c+c1}{\PYZsh{}Tenemos datos en forma de string, por lo que tenemos que extraer el texto del tag de html (get\PYZus{}text()), }
+        \PY{c+c1}{\PYZsh{}luego eliminar las comas (string.replace(\PYZsq{},\PYZsq{},\PYZsq{}\PYZsq{})) y finalemnte convetir el resultado a un numero}
+        \PY{c+c1}{\PYZsh{}float(string)}
+        \PY{n}{enfermos}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}text}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{aux}\PY{o}{=}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}text}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k}{if} \PY{n}{aux}\PY{o}{.}\PY{n}{isnumeric}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{muertos}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{aux}\PY{p}{)}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{muertos}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}print(fechas[0])}
+\PY{c+c1}{\PYZsh{}print(fechas[3])}
+\PY{c+c1}{\PYZsh{}print(fechas[6])}
+\PY{c+c1}{\PYZsh{}print(fechas[9])}
+\PY{c+c1}{\PYZsh{}print(fechas[12].get\PYZus{}text())}
+\PY{c+c1}{\PYZsh{}Tenemos las fechas cada multiplo de tres. Y los primeros dias faltan algunos datos, empiezan a ser estables}
+\PY{c+c1}{\PYZsh{}a partir de el 2020\PYZhy{}03\PYZhy{}11}
+\PY{c+c1}{\PYZsh{}vamos a usar un contador y un while}
+
+\PY{c+c1}{\PYZsh{}Lista de Fechas}
+\PY{n}{dates}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+\PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0} \PY{c+c1}{\PYZsh{}Contador Generico}
+\PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fechas}\PY{p}{)}\PY{p}{:}
+    \PY{n}{dates}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{fechas}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}text}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n}{i}\PY{o}{=}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{3}    
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Numero de datos recuperados 408, enfermos + muertos
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}Verificamos que tengamos los datos}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Resultado de recuperacion de datos, los tres deben ser iguales:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Número de datos de fecha: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Número de datos de enfermos: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{enfermos}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Número de datos de muertos: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{muertos}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}print(enfermos)}
+\PY{c+c1}{\PYZsh{}print(muertos)}
+\PY{c+c1}{\PYZsh{}print(dates)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Resultado de recuperacion de datos, los tres deben ser iguales:
+
+Número de datos de fecha: 204
+Número de datos de enfermos: 204
+Número de datos de muertos: 204
+    \end{Verbatim}
+
+    \#Gráfica Enfermos
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}Como tenemos algunas fechas faltantes, vamos a cortas los primeros 7 datos, donde han inconsistencias}
+\PY{c+c1}{\PYZsh{}plt.pĺot(x,y) donde x es una lista de fechas y \PYZsq{}y\PYZsq{} es una lista datos}
+
+\PY{c+c1}{\PYZsh{}Graficamos la curva general de enfemos cortando los primeros siete datos}
+\PY{c+c1}{\PYZsh{}\PYZsh{}Primero los datos son texto, debemos convertirlos a fechas y numeros}
+\PY{c+c1}{\PYZsh{}empecemos con los enfermos y recortamos los primeros 7 datos}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{20000}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{70}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Grafica de Enfermos Totales}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}plt.rcParams[\PYZsq{}figure.figsize\PYZsq{}] = [20, 20] \PYZsh{}inches}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{enfermos}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}plt.plot(dates[7:],enfermos[7:])}
+\PY{c+c1}{\PYZsh{}plt.plot(dates[7:],enfermos[7:])}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[<matplotlib.lines.Line2D at 0x7f4b6ef5f6a0>]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Aqui impimimos el total de enfermos }
+\PY{n}{d\PYZus{}enfermos}\PY{o}{=}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total de datos: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}Cortamos los primeros 7 por inconsistencias}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{n}{d\PYZus{}enfermos}\PY{p}{[}\PY{n}{dates}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{enfermos}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+    \PY{c+c1}{\PYZsh{}print(f\PYZdq{}\PYZob{}dates[i]\PYZcb{} : \PYZob{}enfermos[i]\PYZcb{}\PYZdq{})}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d\PYZus{}enfermos}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Total de datos: 197:
+
+\{'2020-03-11': 11.0, '2020-03-12': 15.0, '2020-03-13': 26.0, '2020-03-14': 41.0,
+'2020-03-15': 53.0, '2020-03-16': 78.0, '2020-03-17': 89.0, '2020-03-18': 118.0,
+'2020-03-19': 164.0, '2020-03-20': 203.0, '2020-03-21': 251.0, '2020-03-22':
+316.0, '2020-03-23': 367.0, '2020-03-24': 405.0, '2020-03-25': 475.0,
+'2020-03-26': 585.0, '2020-03-27': 717.0, '2020-03-28': 848.0, '2020-03-29':
+993.0, '2020-03-30': 1094.0, '2020-03-31': 1215.0, '2020-04-01': 1378.0,
+'2020-04-02': 1510.0, '2020-04-03': 1688.0, '2020-04-04': 1890.0, '2020-04-05':
+2143.0, '2020-04-06': 2439.0, '2020-04-07': 2785.0, '2020-04-08': 3181.0,
+'2020-04-09': 3441.0, '2020-04-10': 3844.0, '2020-04-11': 4219.0, '2020-04-12':
+4661.0, '2020-04-13': 5014.0, '2020-04-14': 5399.0, '2020-04-15': 5847.0,
+'2020-04-16': 6297.0, '2020-04-17': 6875.0, '2020-04-18': 7497.0, '2020-04-19':
+8261.0, '2020-04-20': 8772.0, '2020-04-21': 9501.0, '2020-04-22': 10544.0,
+'2020-04-23': 11633.0, '2020-04-24': 12872.0, '2020-04-25': 13842.0,
+'2020-04-26': 14677.0, '2020-04-27': 15529.0, '2020-04-28': 16752.0,
+'2020-04-29': 17799.0, '2020-04-30': 19224.0, '2020-05-01': 20739.0,
+'2020-05-02': 22088.0, '2020-05-03': 23471.0, '2020-05-04': 24905.0,
+'2020-05-05': 26025.0, '2020-05-06': 27634.0, '2020-05-07': 29616.0,
+'2020-05-08': 31522.0, '2020-05-09': 33460.0, '2020-05-10': 35022.0,
+'2020-05-11': 36327.0, '2020-05-12': 38324.0, '2020-05-13': 40186.0,
+'2020-05-14': 42595.0, '2020-05-15': 45032.0, '2020-05-16': 47144.0,
+'2020-05-17': 49219.0, '2020-05-18': 51633.0, '2020-05-19': 54346.0,
+'2020-05-20': 56594.0, '2020-05-21': 59567.0, '2020-05-22': 62527.0,
+'2020-05-23': 65856.0, '2020-05-24': 68620.0, '2020-05-25': 71105.0,
+'2020-05-26': 74560.0, '2020-05-27': 78023.0, '2020-05-28': 81400.0,
+'2020-05-29': 84627.0, '2020-05-30': 87512.0, '2020-05-31': 90664.0,
+'2020-06-01': 93435.0, '2020-06-02': 97326.0, '2020-06-03': 101238.0,
+'2020-06-04': 105680.0, '2020-06-05': 110026.0, '2020-06-06': 113619.0,
+'2020-06-07': 117103.0, '2020-06-08': 120102.0, '2020-06-09': 124301.0,
+'2020-06-10': 129184.0, '2020-06-11': 133974.0, '2020-06-12': 139196.0,
+'2020-06-13': 142690.0, '2020-06-14': 146837.0, '2020-06-15': 150264.0,
+'2020-06-16': 154863.0, '2020-06-17': 159793.0, '2020-06-18': 165455.0,
+'2020-06-19': 170485.0, '2020-06-20': 175202.0, '2020-06-21': 180545.0,
+'2020-06-22': 185122.0, '2020-06-23': 191410.0, '2020-06-24': 196847.0,
+'2020-06-25': 202951.0, '2020-06-26': 208392.0, '2020-06-27': 212802.0,
+'2020-06-28': 216852.0, '2020-06-29': 220657.0, '2020-06-30': 226089.0,
+'2020-07-01': 231770.0, '2020-07-02': 238511.0, '2020-07-03': 245251.0,
+'2020-07-04': 252165.0, '2020-07-05': 256848.0, '2020-07-06': 261750.0,
+'2020-07-07': 268008.0, '2020-07-08': 275003.0, '2020-07-09': 282283.0,
+'2020-07-10': 289174.0, '2020-07-11': 295268.0, '2020-07-12': 299750.0,
+'2020-07-13': 304435.0, '2020-07-14': 311486.0, '2020-07-15': 317635.0,
+'2020-07-16': 324041.0, '2020-07-17': 331298.0, '2020-07-18': 338913.0,
+'2020-07-19': 344224.0, '2020-07-20': 349396.0, '2020-07-21': 356255.0,
+'2020-07-22': 362274.0, '2020-07-23': 370712.0, '2020-07-24': 378285.0,
+'2020-07-25': 385036.0, '2020-07-26': 390516.0, '2020-07-27': 395489.0,
+'2020-07-28': 402697.0, '2020-07-29': 408449.0, '2020-07-30': 416179.0,
+'2020-07-31': 424637.0, '2020-08-01': 434193.0, '2020-08-02': 439046.0,
+'2020-08-03': 443813.0, '2020-08-04': 449961.0, '2020-08-05': 456100.0,
+'2020-08-06': 462690.0, '2020-08-07': 469407.0, '2020-08-08': 475902.0,
+'2020-08-09': 480278.0, '2020-08-10': 485836.0, '2020-08-11': 492522.0,
+'2020-08-12': 498380.0, '2020-08-13': 505751.0, '2020-08-14': 511369.0,
+'2020-08-15': 517714.0, '2020-08-16': 522162.0, '2020-08-17': 525733.0,
+'2020-08-18': 531239.0, '2020-08-19': 537031.0, '2020-08-20': 543806.0,
+'2020-08-21': 549734.0, '2020-08-22': 556216.0, '2020-08-23': 560164.0,
+'2020-08-24': 563705.0, '2020-08-25': 568621.0, '2020-08-26': 573888.0,
+'2020-08-27': 579914.0, '2020-08-28': 585738.0, '2020-08-29': 591712.0,
+'2020-08-30': 595841.0, '2020-08-31': 599560.0, '2020-09-01': 606036.0,
+'2020-09-02': 610957.0, '2020-09-03': 616894.0, '2020-09-04': 623090.0,
+'2020-09-05': 629409.0, '2020-09-06': 634023.0, '2020-09-07': 637509.0,
+'2020-09-08': 642860.0, '2020-09-09': 647507.0, '2020-09-10': 652364.0,
+'2020-09-11': 658299.0, '2020-09-12': 663973.0, '2020-09-13': 668381.0,
+'2020-09-14': 671716.0, '2020-09-15': 676487.0, '2020-09-16': 680931.0,
+'2020-09-17': 684113.0, '2020-09-18': 688954.0, '2020-09-19': 694121.0,
+'2020-09-20': 697663.0, '2020-09-21': 700580.0, '2020-09-22': 705263.0,
+'2020-09-23': 710049.0\}
+    \end{Verbatim}
+
+    \#Grafica Muertos
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{70}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Grafica de muertos totales}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{muertos}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}print(\PYZdq{}Gráfica de muertos totales\PYZdq{})}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[<matplotlib.lines.Line2D at 0x7f4b6e4757f0>]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}Ahora impimimos El numero de muertos totales}
+\PY{n}{d\PYZus{}muertos}\PY{o}{=}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total de datos: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}Cortamos los primero 7 por incosistencias}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{n}{d\PYZus{}muertos}\PY{p}{[}\PY{n}{dates}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{muertos}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+    \PY{c+c1}{\PYZsh{}print(f\PYZdq{}\PYZob{}dates[i]\PYZcb{} : \PYZob{}muertos[i]\PYZcb{}\PYZdq{})}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d\PYZus{}muertos}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Total de datos: 197:
+
+\{'2020-03-11': 0, '2020-03-12': 0, '2020-03-13': 0, '2020-03-14': 0,
+'2020-03-15': 0, '2020-03-16': 0, '2020-03-17': 0, '2020-03-18': 1.0,
+'2020-03-19': 1.0, '2020-03-20': 2.0, '2020-03-21': 2.0, '2020-03-22': 2.0,
+'2020-03-23': 4.0, '2020-03-24': 5.0, '2020-03-25': 6.0, '2020-03-26': 8.0,
+'2020-03-27': 12.0, '2020-03-28': 16.0, '2020-03-29': 20.0, '2020-03-30': 28.0,
+'2020-03-31': 29.0, '2020-04-01': 37.0, '2020-04-02': 50.0, '2020-04-03': 60.0,
+'2020-04-04': 79.0, '2020-04-05': 94.0, '2020-04-06': 125.0, '2020-04-07':
+141.0, '2020-04-08': 174.0, '2020-04-09': 194.0, '2020-04-10': 233.0,
+'2020-04-11': 273.0, '2020-04-12': 296.0, '2020-04-13': 332.0, '2020-04-14':
+406.0, '2020-04-15': 449.0, '2020-04-16': 486.0, '2020-04-17': 546.0,
+'2020-04-18': 650.0, '2020-04-19': 686.0, '2020-04-20': 712.0, '2020-04-21':
+857.0, '2020-04-22': 970.0, '2020-04-23': 1069.0, '2020-04-24': 1221.0,
+'2020-04-25': 1305.0, '2020-04-26': 1351.0, '2020-04-27': 1434.0, '2020-04-28':
+1569.0, '2020-04-29': 1732.0, '2020-04-30': 1859.0, '2020-05-01': 1972.0,
+'2020-05-02': 2061.0, '2020-05-03': 2154.0, '2020-05-04': 2271.0, '2020-05-05':
+2507.0, '2020-05-06': 2704.0, '2020-05-07': 2961.0, '2020-05-08': 3160.0,
+'2020-05-09': 3353.0, '2020-05-10': 3465.0, '2020-05-11': 3573.0, '2020-05-12':
+3926.0, '2020-05-13': 4220.0, '2020-05-14': 4477.0, '2020-05-15': 4767.0,
+'2020-05-16': 5045.0, '2020-05-17': 5177.0, '2020-05-18': 5332.0, '2020-05-19':
+5666.0, '2020-05-20': 6090.0, '2020-05-21': 6510.0, '2020-05-22': 6989.0,
+'2020-05-23': 7179.0, '2020-05-24': 7394.0, '2020-05-25': 7633.0, '2020-05-26':
+8134.0, '2020-05-27': 8597.0, '2020-05-28': 9044.0, '2020-05-29': 9415.0,
+'2020-05-30': 9779.0, '2020-05-31': 9930.0, '2020-06-01': 10167.0, '2020-06-02':
+10637.0, '2020-06-03': 11729.0, '2020-06-04': 12545.0, '2020-06-05': 13170.0,
+'2020-06-06': 13511.0, '2020-06-07': 13699.0, '2020-06-08': 14053.0,
+'2020-06-09': 14649.0, '2020-06-10': 15357.0, '2020-06-11': 15944.0,
+'2020-06-12': 16448.0, '2020-06-13': 16872.0, '2020-06-14': 17141.0,
+'2020-06-15': 17580.0, '2020-06-16': 18310.0, '2020-06-17': 19080.0,
+'2020-06-18': 19747.0, '2020-06-19': 20394.0, '2020-06-20': 20781.0,
+'2020-06-21': 21825.0, '2020-06-22': 22584.0, '2020-06-23': 23377.0,
+'2020-06-24': 24324.0, '2020-06-25': 25060.0, '2020-06-26': 25779.0,
+'2020-06-27': 26381.0, '2020-06-28': 26648.0, '2020-06-29': 27121.0,
+'2020-06-30': 27769.0, '2020-07-01': 28510.0, '2020-07-02': 29189.0,
+'2020-07-03': 29843.0, '2020-07-04': 30366.0, '2020-07-05': 30639.0,
+'2020-07-06': 31119.0, '2020-07-07': 32014.0, '2020-07-08': 32796.0,
+'2020-07-09': 33526.0, '2020-07-10': 34191.0, '2020-07-11': 34730.0,
+'2020-07-12': 35006.0, '2020-07-13': 35491.0, '2020-07-14': 36327.0,
+'2020-07-15': 36906.0, '2020-07-16': 37574.0, '2020-07-17': 38310.0,
+'2020-07-18': 38888.0, '2020-07-19': 39184.0, '2020-07-20': 39485.0,
+'2020-07-21': 40400.0, '2020-07-22': 41190.0, '2020-07-23': 41908.0,
+'2020-07-24': 42645.0, '2020-07-25': 43374.0, '2020-07-26': 43680.0,
+'2020-07-27': 44022.0, '2020-07-28': 44876.0, '2020-07-29': 45361.0,
+'2020-07-30': 46000.0, '2020-07-31': 46688.0, '2020-08-01': 47472.0,
+'2020-08-02': 47746.0, '2020-08-03': 48012.0, '2020-08-04': 48869.0,
+'2020-08-05': 49698.0, '2020-08-06': 50517.0, '2020-08-07': 51311.0,
+'2020-08-08': 52006.0, '2020-08-09': 52298.0, '2020-08-10': 53003.0,
+'2020-08-11': 53929.0, '2020-08-12': 54666.0, '2020-08-13': 55293.0,
+'2020-08-14': 55908.0, '2020-08-15': 56543.0, '2020-08-16': 56757.0,
+'2020-08-17': 57023.0, '2020-08-18': 57774.0, '2020-08-19': 58481.0,
+'2020-08-20': 59106.0, '2020-08-21': 59610.0, '2020-08-22': 60254.0,
+'2020-08-23': 60480.0, '2020-08-24': 60800.0, '2020-08-25': 61450.0,
+'2020-08-26': 62076.0, '2020-08-27': 62594.0, '2020-08-28': 63146.0,
+'2020-08-29': 63819.0, '2020-08-30': 64158.0, '2020-08-31': 64414.0,
+'2020-09-01': 65241.0, '2020-09-02': 65816.0, '2020-09-03': 66329.0,
+'2020-09-04': 66851.0, '2020-09-05': 67326.0, '2020-09-06': 67558.0,
+'2020-09-07': 67781.0, '2020-09-08': 68484.0, '2020-09-09': 69095.0,
+'2020-09-10': 69649.0, '2020-09-11': 70183.0, '2020-09-12': 70604.0,
+'2020-09-13': 70821.0, '2020-09-14': 71049.0, '2020-09-15': 71678.0,
+'2020-09-16': 71978.0, '2020-09-17': 72179.0, '2020-09-18': 72803.0,
+'2020-09-19': 73258.0, '2020-09-20': 73493.0, '2020-09-21': 73697.0,
+'2020-09-22': 74348.0, '2020-09-23': 74949.0\}
+    \end{Verbatim}
+
+    \#Incrementos Diarios
+
+    Ahora que tenemos los datos, generamos el pasto, tanto para los muertos
+como para los enfermos, el pasto es la diferencia o incremento y debe
+ser igual al numero de elementos -1 primero obtenemos el numero de
+elementos (actual menos anterior)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{pasto\PYZus{}enfermos}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+\PY{n}{pasto\PYZus{}muertos}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+\PY{n}{longitud}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{enfermos}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{c+c1}{\PYZsh{}para no salirnos del indice}
+\PY{c+c1}{\PYZsh{}print(longitud)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{longitud}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{}pasto = b \PYZhy{} a }
+    \PY{n}{pasto\PYZus{}enfermos}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{enfermos}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{enfermos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{}ahora lo mismo para los muertos}
+    \PY{n}{pasto\PYZus{}muertos}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{muertos}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{muertos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+\PY{c+c1}{\PYZsh{}print(f\PYZdq{}Incremento diario en enfermos durante \PYZob{}len(pasto\PYZus{}enfermos)\PYZcb{} dias:\PYZdq{})        }
+\PY{c+c1}{\PYZsh{}print(pasto\PYZus{}enfermos)}
+\PY{c+c1}{\PYZsh{}print(f\PYZdq{}Incremento diario en muertos durante \PYZob{}len(pasto\PYZus{}muertos)\PYZcb{} días:\PYZdq{})}
+\PY{c+c1}{\PYZsh{}print(pasto\PYZus{}muertos)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \#\#Incremento diario en enfermos
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}Ahora Graficamos el incremento diario de enfermos}
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{500}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{70}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gráfica de incrementos diarios en enfermos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{pasto\PYZus{}enfermos}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[<matplotlib.lines.Line2D at 0x7f4b6e6f7700>]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}Vamos recuperar los datos de la gráfica}
+\PY{c+c1}{\PYZsh{}Primero creamos un dicionario con los datos}
+\PY{n}{delta\PYZus{}enfermos}\PY{o}{=}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+\PY{c+c1}{\PYZsh{}Luego lo llenamos}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Incremento diario en enfermos durante: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ dias}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}cortamos los primeros siete dias por inconsistencias}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{n}{delta\PYZus{}enfermos}\PY{p}{[}\PY{n}{dates}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{pasto\PYZus{}enfermos}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\PY{c+c1}{\PYZsh{}Ahora Imprimimos la delta de enfermos}
+
+\PY{c+c1}{\PYZsh{}for key in delta\PYZus{}enfermos:}
+\PY{c+c1}{\PYZsh{}    print(f\PYZdq{}\PYZob{}key\PYZcb{} : \PYZob{}delta\PYZus{}enfermos[key]\PYZcb{}\PYZdq{})}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{delta\PYZus{}enfermos}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Incremento diario en enfermos durante: 197 dias
+
+\{'2020-03-11': 4.0, '2020-03-12': 4.0, '2020-03-13': 11.0, '2020-03-14': 15.0,
+'2020-03-15': 12.0, '2020-03-16': 25.0, '2020-03-17': 11.0, '2020-03-18': 29.0,
+'2020-03-19': 46.0, '2020-03-20': 39.0, '2020-03-21': 48.0, '2020-03-22': 65.0,
+'2020-03-23': 51.0, '2020-03-24': 38.0, '2020-03-25': 70.0, '2020-03-26': 110.0,
+'2020-03-27': 132.0, '2020-03-28': 131.0, '2020-03-29': 145.0, '2020-03-30':
+101.0, '2020-03-31': 121.0, '2020-04-01': 163.0, '2020-04-02': 132.0,
+'2020-04-03': 178.0, '2020-04-04': 202.0, '2020-04-05': 253.0, '2020-04-06':
+296.0, '2020-04-07': 346.0, '2020-04-08': 396.0, '2020-04-09': 260.0,
+'2020-04-10': 403.0, '2020-04-11': 375.0, '2020-04-12': 442.0, '2020-04-13':
+353.0, '2020-04-14': 385.0, '2020-04-15': 448.0, '2020-04-16': 450.0,
+'2020-04-17': 578.0, '2020-04-18': 622.0, '2020-04-19': 764.0, '2020-04-20':
+511.0, '2020-04-21': 729.0, '2020-04-22': 1043.0, '2020-04-23': 1089.0,
+'2020-04-24': 1239.0, '2020-04-25': 970.0, '2020-04-26': 835.0, '2020-04-27':
+852.0, '2020-04-28': 1223.0, '2020-04-29': 1047.0, '2020-04-30': 1425.0,
+'2020-05-01': 1515.0, '2020-05-02': 1349.0, '2020-05-03': 1383.0, '2020-05-04':
+1434.0, '2020-05-05': 1120.0, '2020-05-06': 1609.0, '2020-05-07': 1982.0,
+'2020-05-08': 1906.0, '2020-05-09': 1938.0, '2020-05-10': 1562.0, '2020-05-11':
+1305.0, '2020-05-12': 1997.0, '2020-05-13': 1862.0, '2020-05-14': 2409.0,
+'2020-05-15': 2437.0, '2020-05-16': 2112.0, '2020-05-17': 2075.0, '2020-05-18':
+2414.0, '2020-05-19': 2713.0, '2020-05-20': 2248.0, '2020-05-21': 2973.0,
+'2020-05-22': 2960.0, '2020-05-23': 3329.0, '2020-05-24': 2764.0, '2020-05-25':
+2485.0, '2020-05-26': 3455.0, '2020-05-27': 3463.0, '2020-05-28': 3377.0,
+'2020-05-29': 3227.0, '2020-05-30': 2885.0, '2020-05-31': 3152.0, '2020-06-01':
+2771.0, '2020-06-02': 3891.0, '2020-06-03': 3912.0, '2020-06-04': 4442.0,
+'2020-06-05': 4346.0, '2020-06-06': 3593.0, '2020-06-07': 3484.0, '2020-06-08':
+2999.0, '2020-06-09': 4199.0, '2020-06-10': 4883.0, '2020-06-11': 4790.0,
+'2020-06-12': 5222.0, '2020-06-13': 3494.0, '2020-06-14': 4147.0, '2020-06-15':
+3427.0, '2020-06-16': 4599.0, '2020-06-17': 4930.0, '2020-06-18': 5662.0,
+'2020-06-19': 5030.0, '2020-06-20': 4717.0, '2020-06-21': 5343.0, '2020-06-22':
+4577.0, '2020-06-23': 6288.0, '2020-06-24': 5437.0, '2020-06-25': 6104.0,
+'2020-06-26': 5441.0, '2020-06-27': 4410.0, '2020-06-28': 4050.0, '2020-06-29':
+3805.0, '2020-06-30': 5432.0, '2020-07-01': 5681.0, '2020-07-02': 6741.0,
+'2020-07-03': 6740.0, '2020-07-04': 6914.0, '2020-07-05': 4683.0, '2020-07-06':
+4902.0, '2020-07-07': 6258.0, '2020-07-08': 6995.0, '2020-07-09': 7280.0,
+'2020-07-10': 6891.0, '2020-07-11': 6094.0, '2020-07-12': 4482.0, '2020-07-13':
+4685.0, '2020-07-14': 7051.0, '2020-07-15': 6149.0, '2020-07-16': 6406.0,
+'2020-07-17': 7257.0, '2020-07-18': 7615.0, '2020-07-19': 5311.0, '2020-07-20':
+5172.0, '2020-07-21': 6859.0, '2020-07-22': 6019.0, '2020-07-23': 8438.0,
+'2020-07-24': 7573.0, '2020-07-25': 6751.0, '2020-07-26': 5480.0, '2020-07-27':
+4973.0, '2020-07-28': 7208.0, '2020-07-29': 5752.0, '2020-07-30': 7730.0,
+'2020-07-31': 8458.0, '2020-08-01': 9556.0, '2020-08-02': 4853.0, '2020-08-03':
+4767.0, '2020-08-04': 6148.0, '2020-08-05': 6139.0, '2020-08-06': 6590.0,
+'2020-08-07': 6717.0, '2020-08-08': 6495.0, '2020-08-09': 4376.0, '2020-08-10':
+5558.0, '2020-08-11': 6686.0, '2020-08-12': 5858.0, '2020-08-13': 7371.0,
+'2020-08-14': 5618.0, '2020-08-15': 6345.0, '2020-08-16': 4448.0, '2020-08-17':
+3571.0, '2020-08-18': 5506.0, '2020-08-19': 5792.0, '2020-08-20': 6775.0,
+'2020-08-21': 5928.0, '2020-08-22': 6482.0, '2020-08-23': 3948.0, '2020-08-24':
+3541.0, '2020-08-25': 4916.0, '2020-08-26': 5267.0, '2020-08-27': 6026.0,
+'2020-08-28': 5824.0, '2020-08-29': 5974.0, '2020-08-30': 4129.0, '2020-08-31':
+3719.0, '2020-09-01': 6476.0, '2020-09-02': 4921.0, '2020-09-03': 5937.0,
+'2020-09-04': 6196.0, '2020-09-05': 6319.0, '2020-09-06': 4614.0, '2020-09-07':
+3486.0, '2020-09-08': 5351.0, '2020-09-09': 4647.0, '2020-09-10': 4857.0,
+'2020-09-11': 5935.0, '2020-09-12': 5674.0, '2020-09-13': 4408.0, '2020-09-14':
+3335.0, '2020-09-15': 4771.0, '2020-09-16': 4444.0, '2020-09-17': 3182.0,
+'2020-09-18': 4841.0, '2020-09-19': 5167.0, '2020-09-20': 3542.0, '2020-09-21':
+2917.0, '2020-09-22': 4683.0, '2020-09-23': 4786.0\}
+    \end{Verbatim}
+
+    \#\#Incremento diario en muertos
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{70}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gráfica de incrementos diarios en muertos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{pasto\PYZus{}muertos}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[<matplotlib.lines.Line2D at 0x7f4b6e63af10>]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}ahora imprimimos los datos del incremento de muertos}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Incremento diario en muertos durante }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ dias}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{delta\PYZus{}muertos}\PY{o}{=}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}} \PY{c+c1}{\PYZsh{}diccionario para guardar el pasto de los muertos}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dates}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{n}{delta\PYZus{}muertos}\PY{p}{[}\PY{n}{dates}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{pasto\PYZus{}muertos}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{c+c1}{\PYZsh{}print(f\PYZdq{}\PYZob{}dates[i]\PYZcb{} : \PYZob{}pasto\PYZus{}muertos[i\PYZhy{}1]\PYZcb{}\PYZdq{} )}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{delta\PYZus{}muertos}\PY{p}{)}    
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Incremento diario en muertos durante 197 dias
+
+\{'2020-03-11': 0, '2020-03-12': 0, '2020-03-13': 0, '2020-03-14': 0,
+'2020-03-15': 0, '2020-03-16': 0, '2020-03-17': 0, '2020-03-18': 1.0,
+'2020-03-19': 0.0, '2020-03-20': 1.0, '2020-03-21': 0.0, '2020-03-22': 0.0,
+'2020-03-23': 2.0, '2020-03-24': 1.0, '2020-03-25': 1.0, '2020-03-26': 2.0,
+'2020-03-27': 4.0, '2020-03-28': 4.0, '2020-03-29': 4.0, '2020-03-30': 8.0,
+'2020-03-31': 1.0, '2020-04-01': 8.0, '2020-04-02': 13.0, '2020-04-03': 10.0,
+'2020-04-04': 19.0, '2020-04-05': 15.0, '2020-04-06': 31.0, '2020-04-07': 16.0,
+'2020-04-08': 33.0, '2020-04-09': 20.0, '2020-04-10': 39.0, '2020-04-11': 40.0,
+'2020-04-12': 23.0, '2020-04-13': 36.0, '2020-04-14': 74.0, '2020-04-15': 43.0,
+'2020-04-16': 37.0, '2020-04-17': 60.0, '2020-04-18': 104.0, '2020-04-19': 36.0,
+'2020-04-20': 26.0, '2020-04-21': 145.0, '2020-04-22': 113.0, '2020-04-23':
+99.0, '2020-04-24': 152.0, '2020-04-25': 84.0, '2020-04-26': 46.0, '2020-04-27':
+83.0, '2020-04-28': 135.0, '2020-04-29': 163.0, '2020-04-30': 127.0,
+'2020-05-01': 113.0, '2020-05-02': 89.0, '2020-05-03': 93.0, '2020-05-04':
+117.0, '2020-05-05': 236.0, '2020-05-06': 197.0, '2020-05-07': 257.0,
+'2020-05-08': 199.0, '2020-05-09': 193.0, '2020-05-10': 112.0, '2020-05-11':
+108.0, '2020-05-12': 353.0, '2020-05-13': 294.0, '2020-05-14': 257.0,
+'2020-05-15': 290.0, '2020-05-16': 278.0, '2020-05-17': 132.0, '2020-05-18':
+155.0, '2020-05-19': 334.0, '2020-05-20': 424.0, '2020-05-21': 420.0,
+'2020-05-22': 479.0, '2020-05-23': 190.0, '2020-05-24': 215.0, '2020-05-25':
+239.0, '2020-05-26': 501.0, '2020-05-27': 463.0, '2020-05-28': 447.0,
+'2020-05-29': 371.0, '2020-05-30': 364.0, '2020-05-31': 151.0, '2020-06-01':
+237.0, '2020-06-02': 470.0, '2020-06-03': 1092.0, '2020-06-04': 816.0,
+'2020-06-05': 625.0, '2020-06-06': 341.0, '2020-06-07': 188.0, '2020-06-08':
+354.0, '2020-06-09': 596.0, '2020-06-10': 708.0, '2020-06-11': 587.0,
+'2020-06-12': 504.0, '2020-06-13': 424.0, '2020-06-14': 269.0, '2020-06-15':
+439.0, '2020-06-16': 730.0, '2020-06-17': 770.0, '2020-06-18': 667.0,
+'2020-06-19': 647.0, '2020-06-20': 387.0, '2020-06-21': 1044.0, '2020-06-22':
+759.0, '2020-06-23': 793.0, '2020-06-24': 947.0, '2020-06-25': 736.0,
+'2020-06-26': 719.0, '2020-06-27': 602.0, '2020-06-28': 267.0, '2020-06-29':
+473.0, '2020-06-30': 648.0, '2020-07-01': 741.0, '2020-07-02': 679.0,
+'2020-07-03': 654.0, '2020-07-04': 523.0, '2020-07-05': 273.0, '2020-07-06':
+480.0, '2020-07-07': 895.0, '2020-07-08': 782.0, '2020-07-09': 730.0,
+'2020-07-10': 665.0, '2020-07-11': 539.0, '2020-07-12': 276.0, '2020-07-13':
+485.0, '2020-07-14': 836.0, '2020-07-15': 579.0, '2020-07-16': 668.0,
+'2020-07-17': 736.0, '2020-07-18': 578.0, '2020-07-19': 296.0, '2020-07-20':
+301.0, '2020-07-21': 915.0, '2020-07-22': 790.0, '2020-07-23': 718.0,
+'2020-07-24': 737.0, '2020-07-25': 729.0, '2020-07-26': 306.0, '2020-07-27':
+342.0, '2020-07-28': 854.0, '2020-07-29': 485.0, '2020-07-30': 639.0,
+'2020-07-31': 688.0, '2020-08-01': 784.0, '2020-08-02': 274.0, '2020-08-03':
+266.0, '2020-08-04': 857.0, '2020-08-05': 829.0, '2020-08-06': 819.0,
+'2020-08-07': 794.0, '2020-08-08': 695.0, '2020-08-09': 292.0, '2020-08-10':
+705.0, '2020-08-11': 926.0, '2020-08-12': 737.0, '2020-08-13': 627.0,
+'2020-08-14': 615.0, '2020-08-15': 635.0, '2020-08-16': 214.0, '2020-08-17':
+266.0, '2020-08-18': 751.0, '2020-08-19': 707.0, '2020-08-20': 625.0,
+'2020-08-21': 504.0, '2020-08-22': 644.0, '2020-08-23': 226.0, '2020-08-24':
+320.0, '2020-08-25': 650.0, '2020-08-26': 626.0, '2020-08-27': 518.0,
+'2020-08-28': 552.0, '2020-08-29': 673.0, '2020-08-30': 339.0, '2020-08-31':
+256.0, '2020-09-01': 827.0, '2020-09-02': 575.0, '2020-09-03': 513.0,
+'2020-09-04': 522.0, '2020-09-05': 475.0, '2020-09-06': 232.0, '2020-09-07':
+223.0, '2020-09-08': 703.0, '2020-09-09': 611.0, '2020-09-10': 554.0,
+'2020-09-11': 534.0, '2020-09-12': 421.0, '2020-09-13': 217.0, '2020-09-14':
+228.0, '2020-09-15': 629.0, '2020-09-16': 300.0, '2020-09-17': 201.0,
+'2020-09-18': 624.0, '2020-09-19': 455.0, '2020-09-20': 235.0, '2020-09-21':
+204.0, '2020-09-22': 651.0, '2020-09-23': 601.0\}
+    \end{Verbatim}
+
+    \#Exportancion de la informacion a formato CSV para ser leida por excel
+y similares
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}guardamos la informacion en formato CSV para ser leida por excel}
+\PY{n}{excel\PYZus{}enfermos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{d\PYZus{}enfermos}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{index}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{excel\PYZus{}muertos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{d\PYZus{}muertos}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{index}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{excel\PYZus{}delta\PYZus{}enfermos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{delta\PYZus{}enfermos}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{index}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{excel\PYZus{}delta\PYZus{}muertos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{delta\PYZus{}muertos}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{index}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}Auqui guardamos la informacion en formato CSV}
+\PY{n}{excel\PYZus{}enfermos}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total de enfermos.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{excel\PYZus{}muertos}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total de muertos.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{excel\PYZus{}delta\PYZus{}enfermos}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Incremento en enfermos.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{excel\PYZus{}delta\PYZus{}muertos}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Incremento en muertos.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \#Analisis por dia de la semana
+
+Ahora vamos a tratar de hacer analisis acumulativos por dia lunes,
+martes, etc, sumando todos los enfermos del dia durante toda la pandemia
+y graficandolos por tipo de día.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}primero creamos una funcion que nos regrese al dia de la semana desde una string con fromato}
+\PY{c+c1}{\PYZsh{}YYYY\PYZhy{}MM\PYZhy{}DD}
+\PY{k+kn}{import} \PY{n+nn}{calendar}
+\PY{k}{def} \PY{n+nf}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{fecha}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2020\PYZhy{}06\PYZhy{}21}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Esta funcion recibe un string de fecha en formato yyyy\PYZhy{}mm\PYZhy{}dd y debe regresar un entero}
+\PY{l+s+sd}{    con el dia de la semana, 0 para domingo, 1 para lunes, ..., 6 para sabado \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{year}\PY{p}{,} \PY{n}{month}\PY{p}{,} \PY{n}{day} \PY{o}{=} \PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{fecha}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+    \PY{k}{return} \PY{n}{calendar}\PY{o}{.}\PY{n}{weekday}\PY{p}{(}\PY{n}{year}\PY{p}{,} \PY{n}{month}\PY{p}{,} \PY{n}{day}\PY{p}{)}
+\PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}ya que tenemos el dia de la semana, creamos una funcion que regrese un diccionario }
+\PY{c+c1}{\PYZsh{}con los acumulados por dia de cada uno de los conjuntos de datos, la funcion}
+\PY{c+c1}{\PYZsh{}debe recibir un conjunto de datos y regresar un diccionario con llaves por cada}
+\PY{c+c1}{\PYZsh{}dia y el acumulado durante el periodo}
+
+\PY{k}{def} \PY{n+nf}{acumulados\PYZus{}por\PYZus{}dia}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} El diccionarion de datos debe tener el formato YYYY\PYZhy{}MM\PYZhy{}DD:dato, para varios dias\PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{c+c1}{\PYZsh{}creamos los contenedores de datos, una lista para cada uno:}
+    \PY{n}{lunes}\PY{p}{,} \PY{n}{martes}\PY{p}{,} \PY{n}{miercoles}\PY{p}{,} \PY{n}{jueves}\PY{p}{,} \PY{n}{viernes}\PY{p}{,} \PY{n}{sabado}\PY{p}{,} \PY{n}{domingo}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}
+    \PY{c+c1}{\PYZsh{}ahora recorremos el diccionario de datos}
+    \PY{k}{for} \PY{n}{key} \PY{o+ow}{in} \PY{n}{dict\PYZus{}datos}\PY{p}{:}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{domingo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+            \PY{n}{lunes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+            \PY{n}{martes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+            \PY{n}{miercoles}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{4}\PY{p}{:}
+            \PY{n}{jueves}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{5}\PY{p}{:}
+            \PY{n}{viernes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{6}\PY{p}{:}
+            \PY{n}{sabado}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{}ahora creamos un diccionario para guardar los datos }
+    \PY{n}{salida}\PY{o}{=}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lunes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{lunes}\PY{p}{)}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Martes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{martes}\PY{p}{)}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Miercoles}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{miercoles}\PY{p}{)}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jueves}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{jueves}\PY{p}{)}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Viernes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{viernes}\PY{p}{)}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sabado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{sabado}\PY{p}{)}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Domingo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{domingo}\PY{p}{)}
+    \PY{k}{return} \PY{n}{salida}
+\PY{n}{acc\PYZus{}enfermos}\PY{o}{=}\PY{n}{acumulados\PYZus{}por\PYZus{}dia}\PY{p}{(}\PY{n}{delta\PYZus{}enfermos}\PY{p}{)}
+\PY{n}{acc\PYZus{}muertos}\PY{o}{=}\PY{n}{acumulados\PYZus{}por\PYZus{}dia}\PY{p}{(}\PY{n}{delta\PYZus{}muertos}\PY{p}{)}
+      
+\end{Verbatim}
+\end{tcolorbox}
+
+    \#grafica de enfermos acumulados por dia
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{acc\PYZus{}enfermos}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total de enfermos: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{acc\PYZus{}enfermos}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gráfica de enfermos acumulados por dia de la semana}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{acc\PYZus{}enfermos}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{acc\PYZus{}enfermos}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'Lunes': 108460.0, 'Martes': 103994.0, 'Miercoles': 112588.0, 'Jueves':
+112642.0, 'Viernes': 109576.0, 'Sabado': 84750.0, 'Domingo': 78032.0\}
+Total de enfermos: 710042.0
+    \end{Verbatim}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<BarContainer object of 7 artists>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \#Grafica de Muerstos acumulados por dia
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{acc\PYZus{}muertos}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total de muertos: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{acc\PYZus{}muertos}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gráfica de muertos acumulados por dia de la semana}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{acc\PYZus{}muertos}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{acc\PYZus{}muertos}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'Lunes': 14527.0, 'Martes': 13620.0, 'Miercoles': 11776.0, 'Jueves': 11838.0,
+'Viernes': 10270.0, 'Sabado': 5775.0, 'Domingo': 7143.0\}
+Total de muertos: 74949.0
+    \end{Verbatim}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<BarContainer object of 7 artists>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \#Grafica de enfermos por dia de la semana
+
+Vamos a graficar los reportes de enfermos por dia de la semana
+
+Creamos una funcion para graficar obtener los datos, es similar a la de
+accumulados por dia pero sin la sumatoria final.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{acc2}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} El diccionarion de datos debe tener el formato YYYY\PYZhy{}MM\PYZhy{}DD:dato, para varios dias\PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{c+c1}{\PYZsh{}creamos los contenedores de datos, una lista para cada uno:}
+    \PY{n}{lunes}\PY{p}{,} \PY{n}{martes}\PY{p}{,} \PY{n}{miercoles}\PY{p}{,} \PY{n}{jueves}\PY{p}{,} \PY{n}{viernes}\PY{p}{,} \PY{n}{sabado}\PY{p}{,} \PY{n}{domingo}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}
+    \PY{c+c1}{\PYZsh{}ahora recorremos el diccionario de datos}
+    \PY{k}{for} \PY{n}{key} \PY{o+ow}{in} \PY{n}{dict\PYZus{}datos}\PY{p}{:}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{domingo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+            \PY{n}{lunes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+            \PY{n}{martes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+            \PY{n}{miercoles}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{4}\PY{p}{:}
+            \PY{n}{jueves}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{5}\PY{p}{:}
+            \PY{n}{viernes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{day\PYZus{}of\PYZus{}week}\PY{p}{(}\PY{n}{key}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{6}\PY{p}{:}
+            \PY{n}{sabado}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dict\PYZus{}datos}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{}ahora creamos un diccionario para guardar los datos }
+    \PY{n}{salida}\PY{o}{=}\PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lunes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{lunes}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Martes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{martes}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Miercoles}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{miercoles}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jueves}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{jueves}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Viernes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{viernes}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sabado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{sabado}
+    \PY{n}{salida}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Domingo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{=}\PY{n}{domingo}
+    \PY{k}{return} \PY{n}{salida}
+
+\PY{n}{DiasEnfermos}\PY{o}{=}\PY{n}{acc2}\PY{p}{(}\PY{n}{delta\PYZus{}enfermos}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'Lunes': [11.0, 38.0, 121.0, 346.0, 385.0, 729.0, 1223.0, 1120.0, 1997.0,
+2713.0, 3455.0, 3891.0, 4199.0, 4599.0, 6288.0, 5432.0, 6258.0, 7051.0, 6859.0,
+7208.0, 6148.0, 6686.0, 5506.0, 4916.0, 6476.0, 5351.0, 4771.0, 4683.0],
+'Martes': [4.0, 29.0, 70.0, 163.0, 396.0, 448.0, 1043.0, 1047.0, 1609.0, 1862.0,
+2248.0, 3463.0, 3912.0, 4883.0, 4930.0, 5437.0, 5681.0, 6995.0, 6149.0, 6019.0,
+5752.0, 6139.0, 5858.0, 5792.0, 5267.0, 4921.0, 4647.0, 4444.0, 4786.0],
+'Miercoles': [4.0, 46.0, 110.0, 132.0, 260.0, 450.0, 1089.0, 1425.0, 1982.0,
+2409.0, 2973.0, 3377.0, 4442.0, 4790.0, 5662.0, 6104.0, 6741.0, 7280.0, 6406.0,
+8438.0, 7730.0, 6590.0, 7371.0, 6775.0, 6026.0, 5937.0, 4857.0, 3182.0],
+'Jueves': [11.0, 39.0, 132.0, 178.0, 403.0, 578.0, 1239.0, 1515.0, 1906.0,
+2437.0, 2960.0, 3227.0, 4346.0, 5222.0, 5030.0, 5441.0, 6740.0, 6891.0, 7257.0,
+7573.0, 8458.0, 6717.0, 5618.0, 5928.0, 5824.0, 6196.0, 5935.0, 4841.0],
+'Viernes': [15.0, 48.0, 131.0, 202.0, 375.0, 622.0, 970.0, 1349.0, 1938.0,
+2112.0, 3329.0, 2885.0, 3593.0, 3494.0, 4717.0, 4410.0, 6914.0, 6094.0, 7615.0,
+6751.0, 9556.0, 6495.0, 6345.0, 6482.0, 5974.0, 6319.0, 5674.0, 5167.0],
+'Sabado': [12.0, 65.0, 145.0, 253.0, 442.0, 764.0, 835.0, 1383.0, 1562.0,
+2075.0, 2764.0, 3152.0, 3484.0, 4147.0, 5343.0, 4050.0, 4683.0, 4482.0, 5311.0,
+5480.0, 4853.0, 4376.0, 4448.0, 3948.0, 4129.0, 4614.0, 4408.0, 3542.0],
+'Domingo': [25.0, 51.0, 101.0, 296.0, 353.0, 511.0, 852.0, 1434.0, 1305.0,
+2414.0, 2485.0, 2771.0, 2999.0, 3427.0, 4577.0, 3805.0, 4902.0, 4685.0, 5172.0,
+4973.0, 4767.0, 5558.0, 3571.0, 3541.0, 3719.0, 3486.0, 3335.0, 2917.0]\}
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lunes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lunes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Martes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Martes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Miercoles}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Miercoles}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jueves}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jueves}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Viernes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Viernes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sabado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sabado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasEnfermos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Domingo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Domingo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gráfica de enfermos por dia de la semana}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{1.05}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<matplotlib.legend.Legend at 0x7f4b6e71deb0>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \#Gráfica de Muertos por dia de la semana
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{DiasMuertos}\PY{o}{=}\PY{n}{acc2}\PY{p}{(}\PY{n}{delta\PYZus{}muertos}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'Lunes': [0, 1.0, 1.0, 16.0, 74.0, 145.0, 135.0, 236.0, 353.0, 334.0, 501.0,
+470.0, 596.0, 730.0, 793.0, 648.0, 895.0, 836.0, 915.0, 854.0, 857.0, 926.0,
+751.0, 650.0, 827.0, 703.0, 629.0, 651.0], 'Martes': [0, 1.0, 1.0, 8.0, 33.0,
+43.0, 113.0, 163.0, 197.0, 294.0, 424.0, 463.0, 1092.0, 708.0, 770.0, 947.0,
+741.0, 782.0, 579.0, 790.0, 485.0, 829.0, 737.0, 707.0, 626.0, 575.0, 611.0,
+300.0, 601.0], 'Miercoles': [0, 0.0, 2.0, 13.0, 20.0, 37.0, 99.0, 127.0, 257.0,
+257.0, 420.0, 447.0, 816.0, 587.0, 667.0, 736.0, 679.0, 730.0, 668.0, 718.0,
+639.0, 819.0, 627.0, 625.0, 518.0, 513.0, 554.0, 201.0], 'Jueves': [0, 1.0, 4.0,
+10.0, 39.0, 60.0, 152.0, 113.0, 199.0, 290.0, 479.0, 371.0, 625.0, 504.0, 647.0,
+719.0, 654.0, 665.0, 736.0, 737.0, 688.0, 794.0, 615.0, 504.0, 552.0, 522.0,
+534.0, 624.0], 'Viernes': [0, 0.0, 4.0, 19.0, 40.0, 104.0, 84.0, 89.0, 193.0,
+278.0, 190.0, 364.0, 341.0, 424.0, 387.0, 602.0, 523.0, 539.0, 578.0, 729.0,
+784.0, 695.0, 635.0, 644.0, 673.0, 475.0, 421.0, 455.0], 'Sabado': [0, 0.0, 4.0,
+15.0, 23.0, 36.0, 46.0, 93.0, 112.0, 132.0, 215.0, 151.0, 188.0, 269.0, 1044.0,
+267.0, 273.0, 276.0, 296.0, 306.0, 274.0, 292.0, 214.0, 226.0, 339.0, 232.0,
+217.0, 235.0], 'Domingo': [0, 2.0, 8.0, 31.0, 36.0, 26.0, 83.0, 117.0, 108.0,
+155.0, 239.0, 237.0, 354.0, 439.0, 759.0, 473.0, 480.0, 485.0, 301.0, 342.0,
+266.0, 705.0, 266.0, 320.0, 256.0, 223.0, 228.0, 204.0]\}
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lunes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lunes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Martes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Martes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Miercoles}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Miercoles}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jueves}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Jueves}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Viernes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Viernes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sabado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sabado}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{DiasMuertos}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Domingo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Domingo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{b}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gráfica de muertos por dia de la semana}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{1.05}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<matplotlib.legend.Legend at 0x7f4b6e54ad00>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_31_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
