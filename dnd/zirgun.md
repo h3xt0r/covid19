@@ -18,7 +18,7 @@
 rolls: [8,10,18,10,14,11]
 {strength;14,
 Dexterity: 18+2,
-Constitution:11,
+Constitution:14,
 Intelligence:10 ,
 Wisdom:10,
 Charisma:8+1,
@@ -35,7 +35,7 @@ Feline Agility: first move 60ft
 Climb Speed: 20ft
 Herbalist proficiency
 Second wind: 1 time per fight healing 1d10*level
-action sourge: 1 una accion mas por combate
+action surge: 1 una accion mas por combate
 
 
 ## other proficiencies and languages
