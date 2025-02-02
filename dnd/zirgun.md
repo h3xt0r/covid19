@@ -34,13 +34,17 @@ Dark Vision: 60ft
 Feline Agility: first move 60ft
 Climb Speed: 20ft
 Herbalist proficiency
+Second wind: 1 time per fight healing 1d10*level
+action sourge: 1 una accion mas por combate
 
 
 ## other proficiencies and languages
-common, elven
+common, elven, Draconic
 
 
 ## Skills
+    acrobatics
+    history
     Medicine
     Perception
     Stealth
@@ -52,6 +56,11 @@ common, elven
     Winter blanket
     common clothes
     herbalist kit
+    leather armor
+    long bow, 20 arrows
+    1 rapier, 1 dagger
+    hand axes (2)
+    Explorer's Pack
 
 
 ### Money
