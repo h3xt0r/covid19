@@ -65,3 +65,17 @@ common, elven, Draconic
 
 ### Money
     5 gold pieces
+
+
+El decano de lordcol nos asigno una mision de buscar una planta de hojas doradas, pero no nos dijo el nombre.
+
+Me encontre con un hado y entramos a una cabaña 
+Lalo: Bartolomeo
+Rodrigo: Noldir
+
+Zirgun la cabaña tiene 3 pisos es mas larga, la puerta tiene muchos candados, la viejecita que esta caminando a la cocina.
+
+a la anciana hay que curarla de paranoia.
+
+Por alguna razón la viejecita me llamo Edward.
+
