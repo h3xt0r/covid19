@@ -66,7 +66,6 @@ common, elven, Draconic
 ### Money
     5 gold pieces
 
-
 El decano "Plargg" de Lorehold nos asigno una mision de buscar una planta de hojas doradas, pero no nos dijo el nombre.
 
 Me encontre con un hado y entramos a una cabaña 
@@ -97,12 +96,12 @@ bola gelatinosa del tiempo, la quieren mover.
 
 A la viejita la atacaron dentro de la facultad de Lorehold y por eso huyó al bosque.
 
-El gato "trece" tiene un enalce arcano con la viejita, en el caso de los magos los vinculos que
+El gato "trece" tiene un enlace arcano con la viejita, en el caso de los magos los vinculos que
 desarrollan con criaturas le da inteligencia al animal.  el nombre de "trece" es "Manettí", trece es la especie
 
 El decano Plargg es el regente del caos, 
 
-No conocimos en excelsior, Hace algun tiempo, han de haber paso 5 o 6 años, ella iba investigando hacia excelsior en el nombre del sindicato estabamos buscando una conexión que existe sobre el tiempo y las regiones construidas en los outlands y su relación con los ciclos temporales del universo, como siempre, entre a las montañas de excelsior sin ninguna protección particual, sin embargo la tribu de gigantes me confundieron con una niña humana y la llevaron al interior de las montañas, y le dieron un potaje, ahi nos conocimos y después del algunas peripecias, Edward la ayudó a escapar, de la celda, los gigantes parecián humanos muy muy altos, los gigantes habia un hombre que se llamaba zeus, otro que se llama ares, 
+No conocimos en excelsior, Hace algún tiempo, han de haber paso 5 o 6 años, ella iba investigando hacia excelsior en el nombre del sindicato estabamos buscando una conexión que existe sobre el tiempo y las regiones construidas en los outlands y su relación con los ciclos temporales del universo, como siempre, entre a las montañas de excelsior sin ninguna protección particular, sin embargo la tribu de gigantes me confundieron con una niña humana y la llevaron al interior de las montañas, y le dieron un potaje, ahi nos conocimos y después del algunas peripecias, Edward la ayudó a escapar, de la celda, los gigantes parecían humanos muy muy altos, los gigantes había un hombre que se llamaba zeus, otro que se llama ares, 
 
 Llegamos al portal que nos llevo de vuelta al cuartel del sindicato, donde me ordenaron como parte del sindicato, 
 
@@ -110,19 +109,74 @@ Buscamos un portal para sigil, para reclutar a estos nuevos en el sindicato.
 
 Una carta para el rey de Rigcage, parece estar perdida.
 
-Llegamos a las afueras de la universidad y Zigurn se queda viendo el muro, hay dos estatuas a la entrada,la viejjita toca las estatuas, hola arthur, hola german, si gue caminando, yo hago lo mismo.  A lo lejos se ve la gran biblioteca, vamos entrando directo, 
+Llegamos a las afueras de la universidad y Zigurn se queda viendo el muro, hay dos estatuas a la entrada,la viejjita toca las estatuas, hola arthur, hola german, sigue caminando, yo hago lo mismo.  A lo lejos se ve la gran biblioteca, vamos entrando directo, 
 
-Mientras va entrando se acercan los estudiantes se empieza a hacer bullisio de los estudiantes alredor de la señora. 
+Mientras va entrando se acercan los estudiantes se empieza a hacer bullisio de los estudiantes alrededor de la señora. 
 
-Por un segundo se ven dos figuras entre los alumnos que desaparecen, tomamos un partal a la izquierda y la seguimos a la viejita donde vamos recorriendo varias aulas, llegamos a una puerta que a todas vistas tiene un monton de runas, 
+Por un segundo se ven dos figuras entre los alumnos que desaparecen, tomamos un portal a la izquierda y la seguimos a la viejita donde vamos recorriendo varias aulas, llegamos a una puerta que a todas vistas tiene un monton de runas, 
 
-La viejita sube una escalera de caracol en la parte de arriba hay un cuarto con un baul, la viejita abre el baul, y entró al baul, el cual es un portal donde estamos sentados en una mesa redonda, iluminados por velas, ruedas de timon, redes de pesca,
-El sindicato esta en sigil, estamos en un cuarto con ventanas negras, hay varias mesas con bastante gente, las personas parecen humanos, una mujer pelirroja y un humano de pelo negro barbón, 
+La viejita sube una escalera de caracol en la parte de arriba hay un cuarto con un baúl, la viejita abre el baul, y entró al baul, el cual es un portal donde estamos sentados en una mesa redonda, iluminados por velas, ruedas de timon, redes de pesca,
+El sindicato esta en Sigil, estamos en un cuarto con ventanas negras, hay varias mesas con bastante gente, las personas parecen humanos, una mujer pelirroja y un humano de pelo negro barbón, 
 
-hay una mesa con todos elfos de diferentes razas elficas, piel roja, draw, elfo de pelo blanco, y piel blanca, pero la mayoria son humanos, 
+hay una mesa con todos elfos de diferentes razas elficas, piel roja, draw, elfo de pelo blanco, y piel blanca, pero la mayoría son humanos, 
 
 Se acerca a nosotros un gigante de 2.5m de nombre Eldrick
 
-pague una cuota de inscripcion de 2 GP, nos entregan una insignia que nos indetifica como parte del sindicato del crepusculo, Ahtropos tiene una maldicion desde hace 2 ciclos cada ciclo es entre 120 y 140 años, 
+Pague una cuota de inscripción de 2 GP, nos entregan una **insignia** que nos identifica como parte del **sindicato del crepúsculo**, Ahtropos tiene una maldición desde hace 2 ciclos cada ciclo es entre 120 y 140 años, 
 
-La señora se llama Ahtropos, hay un board de misiones, la mayoria valen un oro,
+La señora se llama Ahtropos, hay un tablero de misiones, la mayoría valen un oro,
+
+Finalmente se escogió el nombre de los **Hongodelicos** para el grupo, o el otro era **Los estupefactos hongodelicos** y **la legión Atonita**
+
+Otros nombres:
+
+* Los Confundidos
+* Los Desconcertantes
+* La Legión Atónita
+* Los Relámpagos Estupefactos
+
+Nos quedamos en la habitaciones del sindicato del crepúsculo, en la entrada de la taberna hay una mujer alta y fornida que esta cuidando quién sale de la taberna.
+
+La taberna no tiene ventanas que salgan a la calle. La comida y el hospedaje en las barracas no tiene costo para los miembros del sindicato.
+
+Se escogió una misión para buscar una persona extraviada.
+
+De la taberna salimos directamente a un pasillo con puertas, no mandaron a al última puerta, de ahí llegamos a un bosque y seguimos un sendero.
+
+misión: Tres semans dos miembros del guild partieron y no han regresado, un enano de nombre Where Battlehorn y un humano de nombre Happy Greg, que fueron enviados a buscar un artefacto, un espada black blade, su destino era el pueblo de Beythorpe tienen tres semanas perdidos buscando una espada obscura. 
+
+El enano es un clérigo y el humano es fighter 
+
+
+Comemos en el bosque, Ahtropos prepara de comer,
+
+seguimos avanzando y empezamos a escuchar el ruido de agua, siguiendo el camino llegamos a un río, encontramos pisadas en el rio y basura que indica un poblado rio arriba, lo seguimos al poblado.
+
+Siguiendo el río llegamos a una empalizada. y llegamos a un portón donde le preguntamos al guardia del pueblo.  El pueblo se ve de unos 600 habitantes
+
+La mejor taberna del pueblo se llama la 'bruja y la vela',
+
+La otra taberna se llama 'el martillo roto'
+
+El rio que cruza el pueblo no parece ser muy alto, hay herrarias, establos, 
+
+llegamos a la taberna de la bruja y la vela, cerca del mercado, la gente no es bulliciosa, es un pueblo silencioso, es un pueblo pequeño.
+
+El pueblo esta principalmente constituido por humanos, algunos elfos, y alguno que otro enano.
+
+La barra la ocupa una humana de nombre Arur, mediana, alrededor de 40 años con algunas canas, de cabello negro.
+
+En la mesa de la esquina se ve a un humano peligroso, la otra persona es una mesa cerca de la puerta ella tiene varios puestos en el mercado. 
+
+El enano se encuentra rio arriba y la gobernante también fue afectada por algo que acecha en el pueblo y causa efectos mágicos en el pueblo, transmutaciones parciales, en animales, garras en lugar de brazos, 
+
+El hechizo es un hechizo de conjuración, el origen del problema esta en una estatua al sur de la ciudad, buscar templos capillas, cosas que puedan contener una estatua al sur.
+
+El enano esta el norte. 
+
+Por que fueron al norte.
+
+Comemos cabrito en la taberna el martillo roto que se encuentra en la salida norte del pueblo, que es la zona pobre.
+
+Encontamos al enano convetido en oro y al guerrero con la espalda rota, anthropos cura al guerrero 
+Lo ataco una bestia alada  
