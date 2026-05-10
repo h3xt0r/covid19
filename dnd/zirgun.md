@@ -73,8 +73,7 @@ Lalo: Bartolomeo
 Rodrigo: Noldir
 
 Zirgun la cabaña tiene 3 pisos es mas larga, la puerta tiene muchos candados, la viejecita que esta caminando a la cocina.
-La viejita tenia la yerba de hojas doradas, 
-a la anciana hay que curarla de paranoia.
+La viejita tenia la yerba de hojas doradas, a la anciana hay que curarla de paranoia.
 
 Por alguna razón la viejecita me llamo Edward, hoy te vez gordo trece
 
@@ -221,4 +220,14 @@ Con ayuda de anthropos logramos retirar a los niños, y yo segui a anthropos con
 Se le notifica al alcalde del pueblo que los niños están jugando en una tumba sellada con magia y que sus juegos están rompiendo los sellos (candados) que mantienen a lo que sea que esta en esa tumba.  se recomienda que los niños no jueguen cerca de la tumba pues se están rompiendo los sellos.
 
 Investigando en la biblioteca encontramos que hubo una invasión de demonios y con ayuda de los casters se logró detener al general, al parecer uno de los primeros sellos que se rompía cada vez que se los niños piden un deseo.
+
+Vamos a interceptar a los orcos, que se dirigen al atud del general, los encontramos cerca del ataud, voy con athropos y kevin.
+
+Empieza el ataque contra los orcos cerca del ataud.
+
+Recuperamos hachas, objetos de arte, 17 monedas de oro, estan bajo la custodia de athropos. 
+
+Despues de interrogar a los orcos regresamos con el enano convertido en oro, con ayuda de un mago le quitamos la maldición que lo convirtió en oro.
+
+Regresamos a la taberna del gremio. 
 
