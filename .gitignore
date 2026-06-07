@@ -5,3 +5,5 @@
 *.png
 *.zip
 *.gz
+.ipynb*
+*.kate-swp

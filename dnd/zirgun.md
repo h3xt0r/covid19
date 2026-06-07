@@ -231,3 +231,34 @@ Despues de interrogar a los orcos regresamos con el enano convertido en oro, con
 
 Regresamos a la taberna del gremio. 
 
+# 2026-06-06 Sesion en el gremio
+
+## guild del gremio
+
+Pasamos un par de dias en la taverna del gremio
+
+Usamos el portal de taverna para llegar a un pueblo estilo mississippi en ruinas, parece que el pueblo fue abandonado hace poco tiempo despues de un ataque.
+
+Si hay algo de gente, hacemos un contacto con alguien
+
+Estamos buscando al viejo Gerin, pero no saben que le paso, han existido ataque de animales, llevan un tiempo atacando.
+
+Los habitantes del pueblo estan atacados por todos los animales, encontramos cocodrilos.
+
+Nos movemos por terreno pantanoso, es terreno dificil, hay algunos enanos que estan encargados de hacer cosas metalicas, despues de caminar por el pantano, llegamos al centro de pueblo con casitas de madera estilo viejo oeste, hay una taberna y un hombre de nombre **Massin** organizando a la gente
+
+
+Hace un par de semanas un grupo descubrió unas ruinas, adentro de su delirio el lider del grupo decia ranas y miles de ojos, el mago se llamaba.
+
+En el pueblo debe de haber unas 50 personas, en el party somos 9, anthropos empieza a cocinar para 60 personas, 2 raciones grupales, 
+
+Las ruinas estan a unas 6 horas caminando por terreno dificil en el pantano.
+
+Nos quedamos en el pueblo mientras athropos cocina se empieza a juntar el pueblo en la taverna.
+
+El grupo decide apoyar en la guardia, podemos estar en alerta sin formar parte de la guardia. hacemos una pira para quemar los cadaveres de los animales muertos, para evitar propagación de enfermedades.
+
+Ecnontramos que las ruinas son de una civilización antigua, habian estado selladas por una capilla sellada, cuando los aventureros fueron la capilla se abrió y fue cuando empezaron los ataques animales.
+
+Durante la noche en el pueblo tenemos un ataque de diez ranas, logre recuperar mis flechas, se va a recuperar la carne de las ranas, el grupo salio ileso del ataque excepto le mago
+
