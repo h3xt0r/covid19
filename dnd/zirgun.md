@@ -260,5 +260,33 @@ El grupo decide apoyar en la guardia, podemos estar en alerta sin formar parte d
 
 Ecnontramos que las ruinas son de una civilización antigua, habian estado selladas por una capilla sellada, cuando los aventureros fueron la capilla se abrió y fue cuando empezaron los ataques animales.
 
-Durante la noche en el pueblo tenemos un ataque de diez ranas, logre recuperar mis flechas, se va a recuperar la carne de las ranas, el grupo salio ileso del ataque excepto le mago
+Durante la noche en el pueblo tenemos un ataque de diez ranas, logre recuperar mis flechas, se va a recuperar la carne de las ranas, el grupo salio ileso del ataque excepto el paladin, que sufrio quemauras por un hechizo del druida.
+
+Hicimos racciones de las ranas para el pueblo. recupere mis flechas
+
+de el pueblo nos regalaron un champurrado mexicano, y nos avanzan un poco en un bote.
+
+Seguimos avanando en terreno complicado, despues de unas 4 horas, alanzamos a ver una capilla a lo lejos.
+
+La ruinas parecen de una civilización perdida unos 400 años abandonada, las ruinas parecen de construcción humana.
+
+Comemos antes de entrar a las ruinas, nos acercamos a las ruinas, se ve una puerta rota, techo derruido, en medio de la construcción has unas escaleras que bajan.
+
+En las ruinas encontramos un dragon que se llama Arzagon, le explicamos que estamos buscando lo que esta molestando a los animales del pantano, nos dice que para pasar a la cueva tenemos que derrotar (sparring al dragon.)
+
+Tenemos que tomar el corredor que va al cuarto 3, un mago de la naturaleza logro que los animales le siguieran.
+
+tomo 20 flechas de la armeria del dragon y un arco largo compuesto.  En la parede atras del dragon hay una inscripción que dice:
+
+** SOLO EL ONYX LO REVELA **
+
+Para librar al dragon de su juramento tenemos que terminar la misión.
+
+En el cuarto encontramos tres linternas (verde rojo negro) nos llevamos las tres linternas, en cada cuarto hay charcos de agua, los charcos de agua se ven que hay cuerpos humanos flotando, son fantasmas.
+
+En el cuarto del centro hay un pozo de agua con corales, la linterna negra hace que algunos corales brillen, la linterna negra tiene una piedra de Onyx. 
+
+Despuṕes de recorrer algunos pasillos llegamos a un laboratorio, parece que era una cueva y se expandio hasta convertirse en un laboratorio
+
+
 
